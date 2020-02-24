@@ -9,6 +9,17 @@ With this, the user can visualize how their balance fluctuates over time
 
 Presently, here is how the app main app screens look
 
+### Splash Screen
+
 ![Splash](screenshots/splash.png)
 
+### MainActivity
 ![Main Screen](screenshots/main.png)
+
+
+## Stack
+The app is written entirely in Kotlin and uses [AnyChart Android](https://github.com/AnyChart/AnyChart-Android) for plotting the graph.
+
+## Work in Progress
+The app is a work in progress and the next feature is observing the pattern of MTN Mobile Money messages and getting the balances at each instance and plotting. Same will be done for Orange Money and other banks.
+Just create a pull request if you want to contribute to the work or want a feature to be added.
