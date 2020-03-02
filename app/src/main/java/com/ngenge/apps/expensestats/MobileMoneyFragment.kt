@@ -54,6 +54,7 @@ class MobileMoneyFragment :Fragment(){
         selectionClause = "${Telephony.Sms.Inbox.ADDRESS} LIKE ?"
 
 
+        any_chart_view.setProgressBar(progress_bar)
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_SMS) == PackageManager.PERMISSION_DENIED) {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_SMS)) {
@@ -89,7 +90,7 @@ class MobileMoneyFragment :Fragment(){
                 .format("FCFA{%Value}{groupsSeparator: }")
 
             cartesian.animation(true)
-            cartesian.title("Mobile Balance against Date Time")
+            cartesian.title("Mobile Money Balance against Date Time")
             cartesian.yScale().minimum(0.0)
 
             cartesian.yAxis(0).labels().format("FCFA{%Value}{groupsSeparator: }")
@@ -98,7 +99,6 @@ class MobileMoneyFragment :Fragment(){
             cartesian.interactivity().hoverMode(HoverMode.BY_X)
             cartesian.xAxis(0).title("Date Time")
             cartesian.yAxis(0).title("Balance")
-
             any_chart_view.setChart(cartesian)
         }
     }

@@ -54,6 +54,7 @@ class EcobankFragment : Fragment() {
         selectionArgs = arrayOf("ECOBANK")
         selectionClause = "${Telephony.Sms.Inbox.ADDRESS} LIKE ?"
 
+        any_chart_view.setProgressBar(progress_bar)
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_SMS) == PackageManager.PERMISSION_DENIED) {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_SMS)) {
