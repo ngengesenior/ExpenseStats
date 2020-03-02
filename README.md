@@ -13,8 +13,11 @@ Presently, here is how the app main app screens look
 
 ![Splash](screenshots/splash.png)
 
-### MainActivity
-![Main Screen](screenshots/main.png)
+### Mobile Money Screen
+![Main Screen](screenshots/mobile_money.png)
+
+### Ecobank Screen
+![Ecobank Screen](screenshots/ecobank.png)
 
 
 ## Stack
