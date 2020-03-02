@@ -31,7 +31,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
 
             Handler().postDelayed({
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, NavigationActivity::class.java))
                 finish()
             }, 2000)
 
@@ -48,7 +48,7 @@ class SplashActivity : AppCompatActivity() {
             SMS_REQUEST_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this,NavigationActivity::class.java))
                     finish()
                 } else {
 

@@ -2,4 +2,24 @@
     <string name="app_name">Expense Stats</string>
     <string name="privacy_policy">Expense Stats is meant for retrieving the messages sent by Ecobank Cameroon in order for a user to be able to track their account balance over time. The app does request access to the users’ SMS messages in order to get these messages. Using Expense Stats means you grant Expense Stats access to your SMS. We do not store or send any of the messages to any third party service and thus, your messages are kept private to your phone. In no way, we are going to share your data with a third party service.</string>
     <string name="privacy_policy_menu">Privacy Policy</string>
+    <string name="mobile_money">Mobile Money</string>
+    <string name="ecobank">Ecobank</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="menu_mobile_money">Mobile Money</string>
+    <string name="menu_ecobank">Ecobank</string>
 </resources>
