@@ -1,6 +1,5 @@
 package com.ngenge.apps.expensestats
 
-import android.Manifest
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
@@ -10,9 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.anychart.AnyChart
 import com.anychart.charts.Cartesian
 import com.anychart.enums.Anchor
@@ -26,7 +22,6 @@ import kotlinx.android.synthetic.main.fragment_ecobank.*
  */
 class EcobankFragment : Fragment() {
 
-    private val SMS_REQUEST_CODE: Int = 100
     private lateinit var projection: Array<String>
     private lateinit var smsInboxUri: Uri
     private lateinit var selectionArgs:Array<String>
@@ -34,7 +29,8 @@ class EcobankFragment : Fragment() {
     private lateinit var selectionClause:String
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -42,28 +38,18 @@ class EcobankFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         smsInboxUri = Telephony.Sms.Inbox.CONTENT_URI
         projection = arrayOf(
             Telephony.Sms.Inbox._ID,
             Telephony.Sms.Inbox.BODY,
             Telephony.Sms.Inbox.DATE
-
         )
         cartesian = AnyChart.cartesian()
         selectionArgs = arrayOf("ECOBANK")
         selectionClause = "${Telephony.Sms.Inbox.ADDRESS} LIKE ?"
-
         any_chart_view.setProgressBar(progress_bar)
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_SMS) == PackageManager.PERMISSION_DENIED) {
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_SMS)) {
-
-                Toast.makeText(requireContext(),"Permissions are required to read SMS", Toast.LENGTH_LONG).show()
-            } else {
-                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.READ_SMS),SMS_REQUEST_CODE)
-            }
-        } else {
+        if (Utils.askForPermissions(this.requireActivity())) {
             val cursor = requireContext().contentResolver.query(smsInboxUri,projection,selectionClause,selectionArgs,"date ASC")
             if (cursor != null) {
                 plotEcobankStats(cursor)
@@ -100,32 +86,21 @@ class EcobankFragment : Fragment() {
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-
-        when(requestCode) {
-            SMS_REQUEST_CODE -> {
+        permissions: Array<String>,
+        grantResults: IntArray) {
+        when (requestCode) {
+            Utils.SMS_REQUEST_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-
                     val cursor = requireContext().contentResolver.query(smsInboxUri,projection,selectionClause,selectionArgs,"date ASC")
-
                     if (cursor != null) {
                         plotEcobankStats(cursor)
                     }
-
-
-
                 } else {
-
-                    Toast.makeText(requireContext(),"Permission to read SMS denied. Closing app",Toast.LENGTH_LONG).show()
-                    requireActivity().finish()
-
+                    Utils.askForPermissions(this.requireActivity())
                 }
+                return
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
-
 }
